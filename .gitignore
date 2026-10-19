@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+aggregate_reproduced/
+regenerated_assets/
+statistics/reproduced/
+statistics/split_reproduced/
