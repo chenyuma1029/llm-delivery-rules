@@ -1,0 +1,1 @@
+Run from the package root with PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=audit_report python3 -m unittest discover -s tests -v. These nine synthetic/aggregate-boundary tests contain no gold labels or private traces. Wider scientific tests and inputs remain restricted.

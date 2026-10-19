@@ -1,0 +1,54 @@
+{
+  "status": "FROZEN_BEFORE_NEW_ANALYSIS",
+  "date": "2026-10-12",
+  "new_results_class": "post_freeze_exploratory",
+  "old_fold_seed": "KBS-20261008-crossfit-v1",
+  "split_seeds": [
+    20261010,
+    20261011,
+    20261012,
+    20261013,
+    20261014,
+    20261015,
+    20261016,
+    20261017,
+    20261018,
+    20261019,
+    20261020,
+    20261021,
+    20261022,
+    20261023,
+    20261024,
+    20261025,
+    20261026,
+    20261027,
+    20261028,
+    20261029
+  ],
+  "split_rule": "Within each dataset, sort SHA256(str(seed)|original_dataset|original_task_id), then rank modulo 5. Publish only supplied fold columns alongside task aliases; no claim that aliases regenerate the historical task-name hashes.",
+  "bootstrap": {
+    "seed": 20261008,
+    "replicates": 10000,
+    "unit": "task cluster within dataset, fixed OOF selections",
+    "rng": "NumPy default_rng multinomial counts, first MATH then MMLU-Pro",
+    "quantiles": [
+      0.025,
+      0.975
+    ]
+  },
+  "filter_threshold_percent": [
+    90,
+    95,
+    99
+  ],
+  "empty_filter": "retain maximum training completion rate ties, then training partial accuracy, then method identifier lexicographic",
+  "method_sets": {
+    "nine": 9,
+    "exact4": 6,
+    "at_most4": 8,
+    "no_judge": 4
+  },
+  "reference_numbers": "Validation only; not loaded by selectors",
+  "no_new_llm_or_gold": true,
+  "public_scope_expansion": false
+}

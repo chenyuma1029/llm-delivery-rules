@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reproducibility materials for a study of delivery rules and method choice in LLM collaboration under hard communication budgets. Anonymous task metrics, aggregate results and statistical code.">
+  <meta name="theme-color" content="#163b39">
+  <title>Delivery Rules and Method Choice · Reproducibility Materials</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#main"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>DELIVERY RULES / METHOD CHOICE</a>
+    <nav aria-label="Main navigation"><a href="#findings">Findings</a><a href="#reproduce">Reproduce</a><a href="#materials">Materials</a></nav>
+  </div>
+</header>
+<main id="main" class="wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Research materials · Central South University</p>
+      <h1>Delivery Rules and Method Choice in LLM Collaboration under Hard Communication Budgets</h1>
+      <p class="authors"><a href="https://orcid.org/0009-0003-4487-6362">Chenyu Ma</a> · <a href="https://orcid.org/0000-0002-7683-2933">Xuechen Chen</a> · <a href="https://orcid.org/0009-0003-1515-5830">Feng Wang</a></p>
+      <p class="affiliation">Central South University, China · Corresponding author: Xuechen Chen</p>
+      <p class="lead">A hard communication cap can interrupt an exchange after useful answers have been generated. Which method is preferable depends on what the system is allowed to deliver.</p>
+      <div class="actions"><a class="button primary" href="downloads/reproducibility-2026.10.12.zip" download>Download code &amp; data ↗</a><a class="button" href="#findings">Explore the evidence ↓</a></div>
+    </div>
+    <aside class="contract" aria-label="The delivery comparison">
+      <h3>One shared exchange</h3>
+      <div class="step"><span>01 / GENERATION</span><strong>Hold outputs fixed.</strong><p>Compare the same frozen answers and evidence. No responses are regenerated.</p></div>
+      <div class="step"><span>02 / ADMISSION</span><strong>Apply a hard byte cap.</strong><p>Accounting, message admission and reservation determine what fits.</p></div>
+      <div class="step"><span>03 / TERMINAL DELIVERY</span><strong>Resolve an incomplete exchange.</strong><span class="rule strict"><b>Strict abort</b>Expose no answer.</span><span class="rule"><b>Partial commit</b>Attempt the frozen prefix resolution, if its output fits.</span><p>On completion, both expose the same final answer. Every task stays in the denominator.</p></div>
+    </aside>
+  </div>
+  <div class="stats" aria-label="Study scope">
+    <div class="stat"><b>700</b><span>tasks · 300 MATH + 400 MMLU-Pro</span></div>
+    <div class="stat"><b>9</b><span>candidate configurations</span></div>
+    <div class="stat"><b>156</b><span>dependent synthetic contexts</span></div>
+    <div class="stat"><b>20</b><span>additional refitted task partitions</span></div>
+  </div>
+  <section id="findings" aria-labelledby="findings-title">
+    <div class="section-head"><span class="section-no">01</span><div><h2 id="findings-title">Method choice depends on delivery and the candidate set.</h2><p>In a five-fold internal task holdout, we compare selecting a method under the target rule with selecting under the source rule. Both selected methods are evaluated under the target rule.</p></div></div>
+    <div class="evidence">
+      <figure><img src="assets/method-choice.svg" width="1140" height="440" alt="Selection differences by candidate set and transfer direction. The table immediately below gives all six estimates and conditional intervals."><figcaption>Accuracy differences in percentage points. Error bars are 95% conditional bootstrap intervals with out-of-fold choices held fixed. On small screens, the figure and table can be scrolled horizontally.</figcaption></figure>
+      <div class="table-scroll" role="region" aria-label="Held-out estimates" tabindex="0"><table><caption>Held-out selection differences</caption><thead><tr><th scope="col">Candidate set</th><th scope="col">Methods</th><th scope="col">Strict → partial</th><th scope="col">Partial → strict</th></tr></thead><tbody><tr><td>All nine configurations</td><td>9</td><td>0.476 [0.232, 0.721]</td><td>7.405 [6.980, 7.823]</td></tr>
+<tr><td>Exactly four solver calls</td><td>6</td><td>-0.006 [-0.082, 0.067]</td><td>0.259 [0.167, 0.359]</td></tr>
+<tr><td>At most four solver calls</td><td>8</td><td>0.223 [0.096, 0.355]</td><td>2.690 [2.482, 2.898]</td></tr></tbody></table></div>
+    </div>
+    <p class="note">The context median is zero in both directions for all three candidate sets. These mean differences do not imply gains in every context. Negative and zero results are retained in the downloadable materials.</p>
+    <div class="two-col">
+      <article class="panel"><p class="eyebrow">Same-data ranking comparison</p><h3>Most best sets remain unchanged.</h3><p class="number">49 / 156</p><p>contexts have different best-configuration sets under strict abort and partial commit; 107 agree. This ranking comparison is separate from the held-out estimates above.</p><p>Across 20 additional task partitions, the partial-to-strict mean ranges from 6.582 to 7.438 points for all nine configurations, 0.118 to 0.442 for exactly four calls, and 2.584 to 2.928 for at most four.</p><p class="fine">Split ranges describe sensitivity to partitions of the same task pool, not population confidence intervals.</p></article>
+      <article class="panel"><p class="eyebrow">Completion-feasibility diagnostic</p><h3>Training completion screening reduces the observed reverse mismatch.</h3><p>Filtering the nine-method candidate set by minimum training completion leaves these partial-to-strict residuals:</p><div class="table-scroll" role="region" aria-label="Completion filter results" tabindex="0"><table class="filter-table"><thead><tr><th scope="col">Threshold</th><th scope="col">Residual, pp [95% CI]</th><th scope="col">Fallbacks</th></tr></thead><tbody><tr><td>90%</td><td>0.090 [-0.012, 0.191]</td><td>35/780</td></tr>
+<tr><td>95%</td><td>0.042 [-0.041, 0.128]</td><td>46/780</td></tr>
+<tr><td>99%</td><td>0.417 [0.192, 0.651]</td><td>206/780</td></tr></tbody></table></div><p>All three thresholds are retained. Eligible methods are ranked by training partial accuracy. If none qualify, maximum training completion is used before accuracy and identifier tie breaking.</p><p class="fine">This exploratory control uses training labels for selection; it is not a causal decomposition.</p></article>
+    </div>
+    <p class="note">Under strict evaluation, target-rule-selected accuracy is 58.008% for exactly four calls, 65.442% for at most four, and 66.236% for all nine configurations. A smaller transfer difference does not imply higher absolute accuracy. The original prespecified rationale-sharing comparison remains inconclusive. These results concern the frozen task pool, protocol family and specified synthetic grid.</p>
+  </section>
+  <section id="reproduce" aria-labelledby="reproduce-title">
+    <div class="section-head"><span class="section-no">02</span><div><h2 id="reproduce-title">From derived metrics to reported comparisons.</h2><p>The release includes the arrays, fold assignments and scripts needed for statistical refitting. No model API key or evaluator reference answers are required.</p></div></div>
+    <div class="reproduce">
+      <div><p class="eyebrow">Python 3.12 · Run locally</p><h3>Two complementary checks</h3><p><strong>Aggregate audit.</strong> The standard-library interface validates declared aggregate coverage and arithmetic, then reports 936 comparisons over 156 contexts. Its nine tests exercise interface behavior.</p><p><strong>Statistical refitting.</strong> Install the pinned NumPy dependency, run eight boundary tests, refit the original selectors, and reconstruct the fixed-choice intervals. The supplied expected results are used only for comparison, never as script inputs.</p><p>Extract the download and run commands from its root. Use new output directories each time. The bundled <code>statistics/README.md</code> also documents all 20 alternate partitions.</p></div>
+      <div>
+        <div class="code-stack"><div class="code-label">1 / Aggregate interface tests</div><pre><code>python3 -m unittest discover -s audit_report -v</code></pre></div>
+        <div class="code-stack"><div class="code-label">2 / Selection and conditional intervals</div><pre><code>python3 -m pip install -r statistics/requirements.txt
+cd statistics
+python3 scripts/run_sanity_tests.py -v
+python3 scripts/reproduce_selection.py \
+  --data-root . --out reproduced
+python3 scripts/reproduce_intervals.py \
+  --data-root . \
+  --selection reproduced/oof_results.npz \
+  --out reproduced/conditional_intervals.json</code></pre></div>
+      </div>
+    </div>
+  </section>
+  <section id="materials" aria-labelledby="materials-title">
+    <div class="section-head"><span class="section-no">03</span><div><h2 id="materials-title">Inspect, reproduce, and cite.</h2><p>Anonymous numerical metrics and transparent analysis code, with the original data and analysis snapshot preserved.</p></div></div>
+    <div class="files">
+      <a class="file-card" href="downloads/reproducibility-2026.10.12.zip" download><span class="file-type">ZIP · 0.71 MB</span><strong>Code &amp; derived data ↗</strong><span>Scientific snapshot 2026.10.12. Aggregate inputs, anonymous matrices, all folds, scripts and results.</span></a>
+      <a class="file-card" href="downloads/summary.csv" download><span class="file-type">CSV · 11 CONTRASTS</span><strong>Numerical summary ↗</strong><span>Estimates, conditional intervals, signed context counts and filter residuals.</span></a>
+      <a class="file-card" href="downloads/CITATION.cff" download><span class="file-type">CFF · CITATION METADATA</span><strong>Cite these materials ↗</strong><span>Author names, ORCID identifiers, software snapshot version and applicable licenses.</span></a>
+    </div>
+    <details><summary>What is inside the scientific snapshot?</summary><pre><code>audit_report/          Aggregate contract, inputs and comparisons
+statistics/            Anonymous metrics, folds and refitting code
+analysis_summary/      All declared thresholds and split results
+heldout_summary/       Original held-out aggregate results
+historical_aggregates/ Earlier aggregate and resource summaries
+tools/                 Figure and table generation
+CITATION.cff           Citation metadata
+LICENSE_SCOPE.md       Code and derived-material licenses
+MANIFEST_SHA256.txt    File integrity checksums</code></pre><p>The download contains no benchmark question text, raw generated answers, evaluator references, original task identifiers, private reviews or correspondence. The manuscript and supplementary PDF are not included.</p></details>
+  </section>
+  <section class="scope" aria-label="Scope and licensing">
+    <div><h3>Interpretation boundary</h3><p>MATH and MMLU-Pro receive equal weight; all failed deliveries remain in the denominator. Bootstrap intervals use 10,000 task-cluster resamples with fixed out-of-fold choices, without refitting or multiplicity adjustment. The contexts are dependent synthetic settings, not sampled deployments.</p><p>Derived metrics reproduce the supplied selection analyses. They do not independently validate the original reference grading, regenerate model responses, or reconstruct raw-message admission.</p></div>
+    <div><h3>Attribution and reuse</h3><p>Chenyu Ma, Xuechen Chen and Feng Wang (2026). <em>Delivery Rules and Method Choice in LLM Collaboration under Hard Communication Budgets</em>, reproducibility materials, version 2026.10.12.</p><p>Original code is MIT-licensed. Included derived data, documentation and figures are licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. See the license files in the download for scope and terms. Excluded third-party materials are not licensed by this release.</p></div>
+  </section>
+</main>
+<footer><div class="wrap"><p>Ma · Chen · Wang &nbsp; / &nbsp; Reproducibility materials &nbsp; / &nbsp; Data snapshot 2026.10.12</p><div class="footer-links"><a href="#main">Back to top ↑</a><a href="downloads/CITATION.cff">Citation</a></div></div></footer>
+</body>
+</html>

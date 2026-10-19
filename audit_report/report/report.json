@@ -1,0 +1,23 @@
+{
+  "contexts": 156,
+  "nine_same_path_best_set_changes": 49,
+  "all3_changes": 67,
+  "audit_scope": "declared aggregate coverage, macro arithmetic and resource comparisons; not unique-task coverage, raw replay or gold scoring",
+  "task_population_scope": "declared counts only; task membership is not verified by aggregate inputs",
+  "heldout_executed": false,
+  "resource_caveat": "Frozen judge tokens are not actual finite-cap executed tokens; no latency/dollar/energy claim.",
+  "inputs": {
+    "contract": {
+      "filename": "contract.json",
+      "sha256": "8ee9dfcf551d2eff0a71643ea5ebf9906b871c0acb8b0da44f537723eb313813"
+    },
+    "scores": {
+      "filename": "scores.csv",
+      "sha256": "230143d474080e1bfadc07ee9fa65ab2d4abd8174ce60dbce948fbe7cc6b1bc9"
+    },
+    "resources": {
+      "filename": "resources.csv",
+      "sha256": "27d7d9176bb05ad8e8d023c184c9afe0843f8a3a7d92a79457e3560c635629dd"
+    }
+  }
+}

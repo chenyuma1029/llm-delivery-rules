@@ -1,0 +1,1 @@
+Nine configurations: strict leader CL-CAND; partial leader AO-SC8. Four-solver-call subset: CL-CAND leads under both rules. AO-SC8 requests eight solver calls; CL-CAND requests four plus judging. Judge token costs remain unequal. Pareto frontiers must use the declared two-dimensional cost vector, not latency, currency or energy.

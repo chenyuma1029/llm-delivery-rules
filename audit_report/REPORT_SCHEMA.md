@@ -1,0 +1,7 @@
+# Comparison records
+
+Keys are ledger, budget_bytes, compression, header_bytes, method_set and semantics. accuracy_best_set and pareto_set are sorted pipe-delimited method identifiers, **not probabilities**. accuracy_best_exact is an exact rational probability. same_path_target_rule is the opposite same-path convention. Loss columns are target-rule best score minus target score of a source-best member in percentage points; best/worst retain all source ties. Preflight rows leave these columns empty because this column describes same-path transfer. equal_total_compute is always false: fixing solver calls does not match judge costs. Requested calls and frozen judge input+output tokens are separate Pareto dimensions.
+
+The JSON schema describes contract metadata. The CLI additionally validates all nine configurations and three rules for every declared context, uniqueness, probability range, equal-dataset macro arithmetic, exact rational consistency, frozen resource invariance across rules, and admitted mean bytes <= cap. Unknown/missing/nonfinite values are errors. Noncompletion metadata is not a correctness label. The tool cannot authenticate raw message admission, human approval, or benchmark truth from aggregates. It has no gold, no model client and no network operation.
+
+Aggregate inputs validate the declared task counts and coverage only; they do not verify unique task identities or establish task-level completeness. Statistical refitting is provided separately in statistics/.

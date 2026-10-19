@@ -1,0 +1,11 @@
+{
+  "fields": [
+    "requested_solver_calls",
+    "local_solver_input_tokens",
+    "local_solver_output_tokens",
+    "local_judge_input_tokens",
+    "local_judge_output_tokens"
+  ],
+  "unit": "twice the A/B task mean of requested calls or frozen generation tokens; not cap-adaptive executed cost",
+  "no_latency_energy_or_dollar_claim": true
+}

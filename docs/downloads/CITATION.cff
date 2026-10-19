@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite these reproducibility materials when using this code or derived data."
+title: "Delivery Rules and Method Choice in LLM Collaboration under Hard Communication Budgets: Reproducibility Materials"
+type: software
+version: "2026.10.12"
+authors:
+  - family-names: Ma
+    given-names: Chenyu
+    orcid: "https://orcid.org/0009-0003-4487-6362"
+  - family-names: Chen
+    given-names: Xuechen
+    orcid: "https://orcid.org/0000-0002-7683-2933"
+  - family-names: Wang
+    given-names: Feng
+    orcid: "https://orcid.org/0009-0003-1515-5830"
+license:
+  - MIT
+  - CC-BY-4.0

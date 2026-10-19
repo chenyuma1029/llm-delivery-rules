@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen delivery contract audit input",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "analysis_level",
+    "unit",
+    "group_reduction",
+    "serializer",
+    "topology",
+    "packet_order",
+    "atomicity",
+    "reserve",
+    "nonfit",
+    "delivery",
+    "denominator",
+    "uncertainty",
+    "provenance",
+    "task_population",
+    "dataset_weights",
+    "resource_vector",
+    "contexts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "analysis_level": {
+      "const": "post_freeze_exploratory"
+    },
+    "unit": {
+      "const": "logical_application_bytes"
+    },
+    "group_reduction": {
+      "const": "mean A/B within task; AO-SC8 uses one AB"
+    },
+    "serializer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "topology": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packet_order": {
+      "type": "string",
+      "minLength": 1
+    },
+    "atomicity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reserve": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nonfit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "delivery": {
+      "type": "string",
+      "minLength": 1
+    },
+    "denominator": {
+      "type": "string",
+      "minLength": 1
+    },
+    "uncertainty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_population": {
+      "type": "object",
+      "required": [
+        "fresh_hard_math_v2",
+        "mmlu_pro_fresh_v2"
+      ],
+      "properties": {
+        "fresh_hard_math_v2": {
+          "const": 300
+        },
+        "mmlu_pro_fresh_v2": {
+          "const": 400
+        }
+      },
+      "additionalProperties": false
+    },
+    "dataset_weights": {
+      "const": {
+        "fresh_hard_math_v2": 0.5,
+        "mmlu_pro_fresh_v2": 0.5
+      }
+    },
+    "resource_vector": {
+      "const": [
+        "requested_solver_calls",
+        "frozen_judge_input_plus_output_tokens"
+      ]
+    },
+    "contexts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "prefixItems": [
+          {
+            "enum": [
+              "collaboration_payload",
+              "end_to_end_multicast",
+              "end_to_end_unicast"
+            ]
+          },
+          {
+            "type": "integer",
+            "minimum": 0
+          },
+          {
+            "enum": [
+              "raw_utf8",
+              "zlib9_per_packet",
+              "gzip9_per_packet_mtime0"
+            ]
+          },
+          {
+            "type": "integer",
+            "minimum": 0
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}
